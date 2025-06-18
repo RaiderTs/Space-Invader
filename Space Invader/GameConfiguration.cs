@@ -15,6 +15,8 @@ public class GameConfiguration
 
     public float EnemySpeed { get; init; }
 
+    public float EnemySpawnCooldown {get; init; }
+
     public GameConfiguration(string jsonPath)
     {
         string jsonString = File.ReadAllText(jsonPath);

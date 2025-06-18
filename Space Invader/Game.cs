@@ -10,7 +10,7 @@ public class Game
     private readonly RenderWindow _window;
     private readonly Sprite _background;
     private readonly Player _player;
-    private readonly Enemy _enemy;
+    private readonly EnemyManager _enemyManager;
 
     public Game(GameConfiguration gameConfiguration)
     {
@@ -23,7 +23,10 @@ public class Game
         _background = new Sprite(TextureManager.BackgroundTexture);
 
         _player = CreatePlayer(gameConfiguration);
-        _enemy = new Enemy(gameConfiguration.EnemySpeed, TextureManager.EnemyTexture, new Vector2f());
+
+        var screenSize = new Vector2f(gameConfiguration.Width, gameConfiguration.Height);
+        _enemyManager =
+            new EnemyManager(gameConfiguration.EnemySpawnCooldown, gameConfiguration.EnemySpeed, screenSize);
     }
 
     private Player CreatePlayer(GameConfiguration gameConfiguration)
@@ -64,14 +67,14 @@ public class Game
     private void Update()
     {
         _player.Update();
-        _enemy.Update();
+        _enemyManager.Update();
     }
 
     private void Draw()
     {
         _window.Draw(_background);
         _player.Draw(_window);
-        _enemy.Draw(_window);
+        _enemyManager.Draw(_window);
         _window.Display();
     }
 }

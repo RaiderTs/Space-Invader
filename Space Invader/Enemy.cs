@@ -5,6 +5,7 @@ namespace Space_Invaders;
 
 public class Enemy
 {
+    public Vector2f Position => _sprite.Position;
     private readonly float _enemySpeed;
     private readonly Sprite _sprite;
 
@@ -25,7 +26,7 @@ public class Enemy
     {
         Move();
     }
-    
+
     public void Draw(RenderWindow window)
     {
         window.Draw(_sprite);

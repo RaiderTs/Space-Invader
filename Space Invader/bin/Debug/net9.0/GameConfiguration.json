@@ -4,8 +4,7 @@
   "Height": 480,
   "Width": 640,
   "Title": "Space Invaders",
-  "PlayerSettings":
-  {
+  "PlayerSettings": {
     "Speed": 4,
     "MovingLeftButton": 0,
     "MovingRightButton": 3,
@@ -16,5 +15,6 @@
   },
   "BulletSpeed": 20,
   "BulletRadius": 3,
-  "EnemySpeed" : 5
+  "EnemySpeed": 5,
+  "EnemySpawnCooldown": 0.3
 }
