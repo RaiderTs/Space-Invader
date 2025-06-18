@@ -3,5 +3,11 @@
 {
   "Width": 640,
   "Height": 480,
-  "Title": "Space Invaders"
+  "Title": "Space Invaders",
+  "PlayerSpeed": 4,
+  "PlayerMovingLeftButton": 0,
+  "PlayerMovingRightButton": 3,
+  "PlayerMovingUpButton": 22,
+  "PlayerMovingDownButton": 18,
+  "PlayerShootingButton": 57
 }
