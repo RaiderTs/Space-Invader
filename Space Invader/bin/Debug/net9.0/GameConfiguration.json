@@ -16,4 +16,5 @@
   },
   "BulletSpeed": 20,
   "BulletRadius": 3,
+  "EnemySpeed" : 5
 }

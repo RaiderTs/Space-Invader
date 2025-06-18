@@ -11,7 +11,9 @@ public class GameConfiguration
     public float PlayerSpeed { get; init; }
     public PlayerSettings PlayerSettings { get; init; }
     public float BulletSpeed { get; init; }
-    public float BulletRadius { get; init; } 
+    public float BulletRadius { get; init; }
+
+    public float EnemySpeed { get; init; }
 
     public GameConfiguration(string jsonPath)
     {
