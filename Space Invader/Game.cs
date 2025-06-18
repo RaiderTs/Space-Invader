@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SFML.Graphics;
+using SFML.System;
 using SFML.Window;
 
 namespace Space_Invaders;
@@ -18,11 +19,27 @@ public class Game
         _window.SetVerticalSyncEnabled(true);
         _window.Closed += (_, _) => _window.Close();
 
-        _background = new Sprite();
-        _background.Texture = TextureManager.BackgroundTexture;
+        _background = new Sprite(TextureManager.BackgroundTexture);
 
+        _player = CreatePlayer(gameConfiguration);
+    }
+
+    private Player CreatePlayer(GameConfiguration gameConfiguration)
+    {
         var shootingManager = new ShootingManager(0.5f, 20f, 3f);
-        _player = new Player(shootingManager, Keyboard.Key.Space, gameConfiguration);
+        var playerSpawnPosition = GetPlayerSpawnPosition(gameConfiguration, TextureManager.PlayerTexture);
+        var playerMovement = new PlayerMovement(gameConfiguration.PlayerSpeed, gameConfiguration.PlayerMovingLeftButton,
+            gameConfiguration.PlayerMovingDownButton, gameConfiguration.PlayerMovingUpButton,
+            gameConfiguration.PlayerMovingRightButton);
+        return new Player(shootingManager, gameConfiguration.PlayerShootingButton, TextureManager.PlayerTexture, playerSpawnPosition, playerMovement);
+    }
+
+
+    private Vector2f GetPlayerSpawnPosition(GameConfiguration gameConfiguration, Texture texture)
+    {
+        var screenCenter = new Vector2f(gameConfiguration.Width / 2f, gameConfiguration.Height / 2f);
+        var playerSpawnPosition = screenCenter - (Vector2f)texture.Size / 2f;
+        return playerSpawnPosition;
     }
 
     public void Run()
@@ -35,8 +52,6 @@ public class Game
         }
     }
 
-    // для проверки
-    
     private void HandleEvents()
     {
         _window.DispatchEvents();

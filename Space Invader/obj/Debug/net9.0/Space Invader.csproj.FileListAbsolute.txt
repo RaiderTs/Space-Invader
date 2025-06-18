@@ -156,3 +156,4 @@ G:\C#\Проекты\Space Invader\Space Invader\obj\Debug\net9.0\Space Invader.
 G:\C#\Проекты\Space Invader\Space Invader\obj\Debug\net9.0\ref\Space Invader.dll
 G:\C#\Проекты\Space Invader\Space Invader\bin\Debug\net9.0\Newtonsoft.Json.dll
 G:\C#\Проекты\Space Invader\Space Invader\bin\Debug\net9.0\GameConfiguration.json
+G:\C#\Проекты\Space Invader\Space Invader\obj\Debug\net9.0\Space Invader.sourcelink.json
