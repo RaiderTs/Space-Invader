@@ -15,6 +15,9 @@ public class GameConfiguration
     public Keyboard.Key PlayerMovingUpButton { get; init; }
     public Keyboard.Key PlayerMovingDownButton { get; init; }
     public Keyboard.Key PlayerShootingButton { get; init; }
+    public float PlayerShootingCooldown { get; init; }
+    public float BulletSpeed { get; init; }
+    public float BulletRadius { get; init; }
 
     public GameConfiguration(string jsonPath)
     {
