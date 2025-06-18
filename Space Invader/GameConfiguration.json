@@ -1,16 +1,19 @@
 // Для форматирования нажать Ctrl + Alt + L
 
 {
-  "Width": 640,
   "Height": 480,
+  "Width": 640,
   "Title": "Space Invaders",
-  "PlayerSpeed": 4,
-  "PlayerMovingLeftButton": 0,
-  "PlayerMovingRightButton": 3,
-  "PlayerMovingUpButton": 22,
-  "PlayerMovingDownButton": 18,
-  "PlayerShootingButton": 57,
-  "PlayerShootingCooldown" : 0.5,
-  "BulletSpeed" : 20,
-  "BulletRadius" : 3
+  "PlayerSettings":
+  {
+    "Speed": 4,
+    "MovingLeftButton": 0,
+    "MovingRightButton": 3,
+    "MovingUpButton": 22,
+    "MovingDownButton": 18,
+    "ShootingButton": 57,
+    "ShootingCooldown": 0.5
+  },
+  "BulletSpeed": 20,
+  "BulletRadius": 3,
 }

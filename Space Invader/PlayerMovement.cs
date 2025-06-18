@@ -5,20 +5,19 @@ namespace Space_Invaders;
 
 public class PlayerMovement
 {
-    private readonly float _playerSpeed;
+    private readonly float _speed;
     private readonly Keyboard.Key _leftButton;
     private readonly Keyboard.Key _downButton;
     private readonly Keyboard.Key _upButton;
     private readonly Keyboard.Key _rightButton;
-
-    public PlayerMovement(float playerSpeed, Keyboard.Key leftButton, Keyboard.Key downButton, Keyboard.Key upButton,
-        Keyboard.Key rightButton)
+    
+    public PlayerMovement(PlayerSettings playerSettings)
     {
-        _playerSpeed = playerSpeed;
-        _leftButton = leftButton;
-        _downButton = downButton;
-        _upButton = upButton;
-        _rightButton = rightButton;
+        _speed = playerSettings.Speed;
+        _leftButton = playerSettings.MovingLeftButton;
+        _downButton = playerSettings.MovingDownButton;
+        _upButton = playerSettings.MovingUpButton;
+        _rightButton = playerSettings.MovingRightButton;
     }
 
     public Vector2f GetNewPosition(Vector2f position)
@@ -45,7 +44,7 @@ public class PlayerMovement
             movement.Y += 1;
         }
 
-        position += movement.Normalize() * _playerSpeed;
+        position += movement.Normalize() * _speed;
         
         return position;
     }

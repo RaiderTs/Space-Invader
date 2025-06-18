@@ -26,15 +26,12 @@ public class Game
 
     private Player CreatePlayer(GameConfiguration gameConfiguration)
     {
-        var shootingManager = new ShootingManager(gameConfiguration.PlayerShootingCooldown,
-            gameConfiguration.BulletSpeed, gameConfiguration.BulletRadius);
-        
+        var shootingCooldown = gameConfiguration.PlayerSettings.ShootingCooldown;
+        var shootingManager = new ShootingManager(shootingCooldown, gameConfiguration.BulletSpeed, gameConfiguration.BulletRadius);
         var playerSpawnPosition = GetPlayerSpawnPosition(gameConfiguration, TextureManager.PlayerTexture);
-        var playerMovement = new PlayerMovement(gameConfiguration.PlayerSpeed, gameConfiguration.PlayerMovingLeftButton,
-            gameConfiguration.PlayerMovingDownButton, gameConfiguration.PlayerMovingUpButton,
-            gameConfiguration.PlayerMovingRightButton);
-        return new Player(shootingManager, gameConfiguration.PlayerShootingButton, TextureManager.PlayerTexture,
-            playerSpawnPosition, playerMovement);
+        var playerMovement = new PlayerMovement(gameConfiguration.PlayerSettings);
+        var shootingButton = gameConfiguration.PlayerSettings.ShootingButton;
+        return new Player(shootingManager, shootingButton, TextureManager.PlayerTexture, playerSpawnPosition, playerMovement);
     }
 
 
