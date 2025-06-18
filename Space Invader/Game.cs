@@ -35,6 +35,8 @@ public class Game
         }
     }
 
+    // для проверки
+    
     private void HandleEvents()
     {
         _window.DispatchEvents();
