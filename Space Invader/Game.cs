@@ -10,6 +10,7 @@ public class Game
     private readonly RenderWindow _window;
     private readonly Sprite _background;
     private readonly Player _player;
+    private readonly EnemyManager _enemyManager;
 
     public Game(GameConfiguration gameConfiguration)
     {
@@ -22,16 +23,22 @@ public class Game
         _background = new Sprite(TextureManager.BackgroundTexture);
 
         _player = CreatePlayer(gameConfiguration);
+
+        var screenSize = new Vector2f(gameConfiguration.Width, gameConfiguration.Height);
+        _enemyManager =
+            new EnemyManager(gameConfiguration.EnemySpawnCooldown, gameConfiguration.EnemySpeed, screenSize);
     }
 
     private Player CreatePlayer(GameConfiguration gameConfiguration)
     {
-        var shootingManager = new ShootingManager(0.5f, 20f, 3f);
+        var shootingCooldown = gameConfiguration.PlayerSettings.ShootingCooldown;
+        var shootingManager = new ShootingManager(shootingCooldown, gameConfiguration.BulletSpeed,
+            gameConfiguration.BulletRadius);
         var playerSpawnPosition = GetPlayerSpawnPosition(gameConfiguration, TextureManager.PlayerTexture);
-        var playerMovement = new PlayerMovement(gameConfiguration.PlayerSpeed, gameConfiguration.PlayerMovingLeftButton,
-            gameConfiguration.PlayerMovingDownButton, gameConfiguration.PlayerMovingUpButton,
-            gameConfiguration.PlayerMovingRightButton);
-        return new Player(shootingManager, gameConfiguration.PlayerShootingButton, TextureManager.PlayerTexture, playerSpawnPosition, playerMovement);
+        var playerMovement = new PlayerMovement(gameConfiguration.PlayerSettings);
+        var shootingButton = gameConfiguration.PlayerSettings.ShootingButton;
+        return new Player(shootingManager, shootingButton, TextureManager.PlayerTexture, playerSpawnPosition,
+            playerMovement);
     }
 
 
@@ -60,12 +67,14 @@ public class Game
     private void Update()
     {
         _player.Update();
+        _enemyManager.Update();
     }
 
     private void Draw()
     {
         _window.Draw(_background);
         _player.Draw(_window);
+        _enemyManager.Draw(_window);
         _window.Display();
     }
 }
