@@ -23,26 +23,30 @@ public class PlayerMovement
 
     public Vector2f GetNewPosition(Vector2f position)
     {
+        Vector2f movement = new Vector2f();
+
         if (Keyboard.IsKeyPressed(_leftButton))
         {
-            position.X -= _playerSpeed;
+            movement.X -= 1;
         }
 
         if (Keyboard.IsKeyPressed(_rightButton))
         {
-            position.X += _playerSpeed;
+            movement.X += 1;
         }
 
         if (Keyboard.IsKeyPressed(_upButton))
         {
-            position.Y -= _playerSpeed;
+            movement.Y -= 1;
         }
 
         if (Keyboard.IsKeyPressed(_downButton))
         {
-            position.Y += _playerSpeed;
+            movement.Y += 1;
         }
 
+        position += movement.Normalize() * _playerSpeed;
+        
         return position;
     }
 }
